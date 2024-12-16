@@ -1,0 +1,22 @@
+{% extends "dndpage\main_dnd_page.html" %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static "css/lvdndpage.css" %}" />
+{% endblock head %}
+
+{% block content %}
+
+<div id="lvpage">
+    {% for i in lv %}
+    <div class="lv">
+        <h2>Lv {{i}}</h2>
+        <div>
+            <h3>Атрибут 1</h3>
+        </div>
+        <div>
+            <h3>Атрибут 2</h3>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock content %}

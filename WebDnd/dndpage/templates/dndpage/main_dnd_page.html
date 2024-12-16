@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <title>Dnd builder</title>
+    <link rel="stylesheet" href="{% static "css/dndpage.css" %}" />
+    <meta charset="utf-8" />
+    {% block head %}
+    {% endblock head %}
+</head>
+<body>
+    <div id="header">
+        <h1>Dnd page</h1>
+    </div>
+    <main>
+        <div id="main">
+            <div id="statistic">
+                <div id="flexrow">
+                    <div id="lvinf">
+                        <h3>Уровень</h3>
+                        <h2>10</h3>
+                    </div>
+                    <div class="infbock">
+                        <h3>Имя</h3>
+                        <h2>Введенное имя</h3>
+                    </div>
+                </div>
+                <div class="infbock">
+                    <h3>Расса</h3>
+                    <h2>Человек</h3>
+                </div>
+                <div class="infbock">
+                    <h3>Класс</h3>
+                    <h2>Воин</h3>
+                </div>
+                <div id="hp">
+                    <h2>Здоровье</h2>
+                    <h2>120/120</h2>
+                </div>
+                <div id="xp">
+                    <h2>Опыт</h2>
+                    <h2>1200/1200</h2>
+                </div>
+                <div id="stat">
+                    <div>
+                        <h3>СИЛ</h3>
+                        <h3>10</h3>
+                    </div>
+                    <div>
+                        <h3>ЛОВ</h3>
+                        <h3>10</h3>
+                    </div>
+                    <div>
+                        <h3>ТЕЛ</h3>
+                        <h3>10</h3>
+                    </div>
+                    <div>
+                        <h3>ИНТ</h3>
+                        <h3>10</h3>
+                    </div>
+                    <div>
+                        <h3>МУД</h3>
+                        <h3>10</h3>
+                    </div>
+                    <div>
+                        <h3>ХАР</h3>
+                        <h3>10</h3>
+                    </div>
+                </div>
+            </div>
+            <a href="/dndpage/lv/" class="navigate">
+                <h3>Путь героя</h3>
+            </a>
+            <a href="/dndpage/lv/" class="navigate">
+                <h3>Навыки</h3>
+            </a>
+            <a href="/dndpage/lv/" class="navigate">
+                <h3>Заклинания</h3>
+            </a>
+            <a href="/dndpage/gear/" class="navigate">
+                <h3>Инвентарь</h3>
+            </a>
+        </div>
+        <div id="content">
+            {% block content %}
+            {% endblock content %}
+        </div>
+    </main>
+</body>
+</html>
