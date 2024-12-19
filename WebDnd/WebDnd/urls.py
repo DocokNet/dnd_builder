@@ -17,10 +17,28 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from dndpage import views
+from dndpage.views import (
+    RacesListCreateView,
+    BackgroundListCreateView,
+    #ArchetypesListCreateView,
+    ClassesListCreateView,
+    ClassSkillsListCreateView,
+    #ArchetypeSkillsListCreateView,
+    CurrentClassInfoListCreateView,
+    PlayerListCreateView
+)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('dndpage/', views.maindndpage),
     path('dndpage/lv/', views.lvdndpage),
     path('dndpage/gear/', views.geardndpage),
+    path('api/races/', RacesListCreateView.as_view(), name='races-list-create'),
+    path('api/backgrounds/', BackgroundListCreateView.as_view(), name='backgrounds-list-create'),
+    #path('api/archetypes/', ArchetypesListCreateView.as_view(), name='archetypes-list-create'),
+    path('api/classes/', ClassesListCreateView.as_view(), name='classes-list-create'),
+    path('api/class-skills/', ClassSkillsListCreateView.as_view(), name='class-skills-list-create'),
+    #path('api/archetype-skills/', ArchetypeSkillsListCreateView.as_view(), name='archetype-skills-list-create'),
+    path('api/current-class-info/', CurrentClassInfoListCreateView.as_view(), name='current-class-info-list-create'),
+    path('api/player/', PlayerListCreateView.as_view(), name='players-list-create'),
 ]

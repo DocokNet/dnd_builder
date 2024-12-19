@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Races, Background, Archetypes, Classes, Class_skills, Archetype_skills, Current_class_info, Player
+from .models import Races, Background, Classes, Class_skills, Current_class_info, Player
 
 class RacesSerializer(serializers.ModelSerializer):
     class Meta:
@@ -11,10 +11,10 @@ class BackgroundSerializer(serializers.ModelSerializer):
         model = Background
         fields = ['id', 'name', 'background_skills', 'languages', 'instruments_prof', 'background_gear']
 
-class ArchetypesSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Archetypes
-        fields = ['id', 'archetype_name']
+#class ArchetypesSerializer(serializers.ModelSerializer):
+#    class Meta:
+#        model = Archetypes
+#        fields = ['id', 'archetype_name']
 
 class ClassesSerializer(serializers.ModelSerializer):
     class Meta:
@@ -26,10 +26,10 @@ class ClassSkillsSerializer(serializers.ModelSerializer):
         model = Class_skills
         fields = ['id', 'name', 'class_id']
 
-class ArchetypeSkillsSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Archetype_skills
-        fields = ['id', 'name', 'archetype_id']
+#class ArchetypeSkillsSerializer(serializers.ModelSerializer):
+#    class Meta:
+#        model = Archetype_skills
+#        fields = ['id', 'name', 'archetype_id']
 
 class CurrentClassInfoSerializer(serializers.ModelSerializer):
     class Meta:

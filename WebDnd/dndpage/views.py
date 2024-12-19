@@ -1,5 +1,55 @@
 from django.shortcuts import render
+from rest_framework import generics
+from .models import (Races, 
+                     Background, 
+                     #Archetypes, 
+                     Classes, 
+                     Class_skills, 
+                     #Archetype_skills,
+                     Current_class_info, 
+                     Player)
+from .serializers import (
+    RacesSerializer,
+    BackgroundSerializer,
+    #ArchetypesSerializer,
+    ClassesSerializer,
+    ClassSkillsSerializer,
+    #ArchetypeSkillsSerializer,
+    CurrentClassInfoSerializer,
+    PlayerSerializer
+)
 
+class RacesListCreateView(generics.ListCreateAPIView):
+    queryset = Races.objects.all()
+    serializer_class = RacesSerializer
+
+class BackgroundListCreateView(generics.ListCreateAPIView):
+    queryset = Background.objects.all()
+    serializer_class = BackgroundSerializer
+
+#class ArchetypesListCreateView(generics.ListCreateAPIView):
+#    queryset = Archetypes.objects.all()
+#    serializer_class = ArchetypesSerializer
+
+class ClassesListCreateView(generics.ListCreateAPIView):
+    queryset = Classes.objects.all()
+    serializer_class = ClassesSerializer
+
+class ClassSkillsListCreateView(generics.ListCreateAPIView):
+    queryset = Class_skills.objects.all()
+    serializer_class = ClassSkillsSerializer
+
+#class ArchetypeSkillsListCreateView(generics.ListCreateAPIView):
+#    queryset = Archetype_skills.objects.all()
+#    serializer_class = ArchetypeSkillsSerializer
+
+class CurrentClassInfoListCreateView(generics.ListCreateAPIView):
+    queryset = Current_class_info.objects.all()
+    serializer_class = CurrentClassInfoSerializer
+
+class PlayerListCreateView(generics.ListCreateAPIView):
+    queryset = Player.objects.all()
+    serializer_class = PlayerSerializer
 
 def maindndpage(request):
     return render(request, "dndpage/main_dnd_page.html",)
