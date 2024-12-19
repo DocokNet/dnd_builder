@@ -33,6 +33,7 @@ urlpatterns = [
     path('dndpage/', views.maindndpage),
     path('dndpage/lv/', views.lvdndpage),
     path('dndpage/gear/', views.geardndpage),
+    path('dndpage/info/', views.infodndpage),
     path('api/races/', RacesListCreateView.as_view(), name='races-list-create'),
     path('api/backgrounds/', BackgroundListCreateView.as_view(), name='backgrounds-list-create'),
     #path('api/archetypes/', ArchetypesListCreateView.as_view(), name='archetypes-list-create'),
