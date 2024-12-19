@@ -23,4 +23,5 @@ urlpatterns = [
     path('dndpage/', views.maindndpage),
     path('dndpage/lv/', views.lvdndpage),
     path('dndpage/gear/', views.geardndpage),
+    path('dndpage/info/', views.infodndpage),
 ]
