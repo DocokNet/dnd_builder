@@ -12,15 +12,14 @@
     align-items: center; 
     padding: 10px;
 }
+.statdiv{
+    justify-content: center;
+}
 #stat{
     width: 10%;
     display: grid;
     grid-template-columns: 90%;
     justify-content: space-between;
-}
-#stat div{
-    display: flex;
-    justify-content: baseline;
 }
 .skills{
     margin-top: 5px;
@@ -101,4 +100,35 @@
     border-radius: 50%; /* Закругление углов */
     background: #ffffff; /* Цвет ползунка */
     cursor: pointer; /* Курсор при наведении */
+}
+.number-input {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.number-input button {
+    background-color: #ffffff; /* Цвет кнопки */
+    color: rgb(247, 0, 255); /* Цвет текста */
+    border: 2px solid white;
+    border-radius: 50%;
+    padding: 5px 10px;
+    width: 25%;
+    cursor: pointer;
+}
+
+.number-input button:hover {
+    background-color: #7908AA; /* Цвет кнопки при наведении */
+}
+
+.custom-number-input {
+    width: 50px; /* Ширина поля ввода */
+    text-align: center; /* Центрирование текста */
+}
+
+.custom-number-input::-webkit-inner-spin-button,
+.custom-number-input::-webkit-outer-spin-button {
+    -webkit-appearance: none; /* Для Chrome, Safari и Opera */
+    margin: 0;
 }

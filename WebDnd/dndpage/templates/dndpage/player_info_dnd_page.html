@@ -9,7 +9,7 @@
     <div id="flexrow">
         <div id="lvinf">
             <h3>Уровень</h3>
-            <input value="10" type="number" min="0" max="20"  id="numberInput" pattern="^\d{1,2}$" oninput="this.value = this.value.replace(/[^0-9]/g, '')" />
+            <input value="10" type="number" min="1" max="20"  id="numberInput" pattern="^\d{1,2}$" oninput="updateSkills()" />
         </div>
         <div class="infbock">
             <h3>Имя</h3>
@@ -17,7 +17,7 @@
         </div>
     </div>
     <div class="infbock">
-        <h3>Расса</h3>
+        <h3>Раса</h3>
         <input class="inblok" value="Человек" type="text" />
     </div>
     <div class="infbock">
@@ -39,52 +39,75 @@
     </div>
     <div id="flexrow">
     <div id="stat">
-        <div>
+        <div  class="statdiv">
             <h3>СИЛ</h3>
-            <input value="10" type="number" min="0" max="20"  id="numberInput" pattern="^\d{1,2}$" oninput="this.value = this.value.replace(/[^0-9]/g, '')" />
+            <div class="number-input">
+                <button onclick="decrement('str')">-</button>
+                <input value="10" id="str" type="number" min="0" max="20" class="custom-number-input" oninput="updateSkills()" onkeydown="return false;" />
+                <button onclick="increment('str')">+</button>
+            </div>
         </div>
-        <div>
+        <div class="statdiv">
             <h3>ЛОВ</h3>
-            <input value="10" type="number" min="0" max="20"  id="numberInput" pattern="^\d{1,2}$" oninput="this.value = this.value.replace(/[^0-9]/g, '')" />
+            <div class="number-input">
+                <button onclick="decrement('dex')">-</button>
+                <input value="10" id="dex" type="number" min="0" max="20" class="custom-number-input" oninput="updateSkills()" onkeydown="return false;" />
+                <button onclick="increment('dex')">+</button>
+            </div>
         </div>
-        <div>
+        <div class="statdiv">
             <h3>ТЕЛ</h3>
-            <input value="10" type="number" min="0" max="20"  id="numberInput" pattern="^\d{1,2}$" oninput="this.value = this.value.replace(/[^0-9]/g, '')" />
+            <div class="number-input">
+                <button onclick="decrement('con')">-</button>
+                <input value="10" id="con" type="number" min="0" max="20" class="custom-number-input" oninput="updateSkills()" onkeydown="return false;" />
+                <button onclick="increment('con')">+</button>
+            </div>
         </div>
-        <div>
+        <div class="statdiv">
             <h3>ИНТ</h3>
-            <input value="10" type="number" min="0" max="20"  id="numberInput" pattern="^\d{1,2}$" oninput="this.value = this.value.replace(/[^0-9]/g, '')" />
+            <div class="number-input">
+                <button onclick="decrement('int')">-</button>
+                <input value="10" id="int" type="number" min="0" max="20" class="custom-number-input" oninput="updateSkills()" onkeydown="return false;" />
+                <button onclick="increment('int')">+</button>
+            </div>
         </div>
-        <div>
+        <div class="statdiv">
             <h3>МУД</h3>
-            <input value="10" type="number" min="0" max="20"  id="numberInput" pattern="^\d{1,2}$" oninput="this.value = this.value.replace(/[^0-9]/g, '')" />
+            <div class="number-input">
+                <button onclick="decrement('wis')">-</button>
+                <input value="10" id="wis" type="number" min="0" max="20" class="custom-number-input" oninput="updateSkills()" onkeydown="return false;" />
+                <button onclick="increment('wis')">+</button>
+            </div>
         </div>
-        <div>
+        <div class="statdiv">
             <h3>ХАР</h3>
-            <input value="10" type="number" min="0" max="20"  id="numberInput" pattern="^\d{1,2}$" oninput="this.value = this.value.replace(/[^0-9]/g, '')" />
+            <div class="number-input">
+                <button onclick="decrement('cha')">-</button>
+                <input value="10" id="cha" type="number" min="0" max="20" class="custom-number-input" oninput="updateSkills()" onkeydown="return false;" />
+                <button onclick="increment('cha')">+</button>
+            </div>
         </div>
-    </div >
+    </div>
     
     <div class="skills">
-        <h3> Умения </h2>
-        <h2>+0 Акробатика (Лов)</h2>
-        <h2>+0 Анализ (Инт)</h2>
-        <h2>+0 Атлетика (Сил)</h2>
-        <h2>+0 Восприятие (Муд)</h2>
-        <h2>+0 Выживание (Муд)</h2>
-        <h2>+0 Выступление (Хар)</h2>
-        <h2>+0 Запугивание (Хар)</h2>
-        <h2>+0 История (Инт)</h2>
-        <h2>+0 Ловкость рук (Лов)</h2>
-        <h2>+0 Магия (Инт)</h2>
-        <h2>+0 Медицина (Муд)</h2>
-        <h2>+0 Обман (Хар)</h2>
-        <h2>+0 Природа (Инт)</h2>
-        <h2>+0 Проницательность (Муд)</h2>
-        <h2>+0 Религия (Инт)</h2>
-        <h2>+0 Скрытность (Лов)</h2>
-        <h2>+0 Убеждение (Хар)</h2>
-        <h2>+0 Уход за животными (Муд)</h2>
+        <h2 id="acrobatics">+0 Акробатика (Лов)</h2>
+        <h2 id="analysis">+0 Анализ (Инт)</h2>
+        <h2 id="athletics">+0 Атлетика (Сил)</h2>
+        <h2 id="perception">+0 Восприятие (Муд)</h2>
+        <h2 id="survival">+0 Выживание (Муд)</h2>
+        <h2 id="performance">+0 Выступление (Хар)</h2>
+        <h2 id="intimidation">+0 Запугивание (Хар)</h2>
+        <h2 id="history">+0 История (Инт)</h2>
+        <h2 id="sleightOfHand">+0 Ловкость рук (Лов)</h2>
+        <h2 id="magic">+0 Магия (Инт)</h2>
+        <h2 id="medicine">+0 Медицина (Муд)</h2>
+        <h2 id="deception">+0 Обман (Хар)</h2>
+        <h2 id="nature">+0 Природа (Инт)</h2>
+        <h2 id="insight">+0 Проницательность (Муд)</h2>
+        <h2 id="religion">+0 Религия (Инт)</h2>
+        <h2 id="stealth">+0 Скрытность (Лов)</h2>
+        <h2 id="persuasion">+0 Убеждение (Хар)</h2>
+        <h2 id="animalHandling">+0 Уход за животными (Муд)</h2>
     </div>
     </div>
 </div>
@@ -112,5 +135,53 @@
         // Инициализация фона при загрузке страницы
         updateSliderBackground(healthSlider);
         updateSliderBackground(experienceSlider);
+
+        function increment(id) {
+            const input = document.getElementById(id);
+            if (input.value < 20) {
+                input.value = parseInt(input.value) + 1;
+                updateSkills();
+            }
+        }
+
+        function decrement(id) {
+            const input = document.getElementById(id);
+            if (input.value > 0) {
+                input.value = parseInt(input.value) - 1;
+                updateSkills();
+            }
+        }
+
+        function updateSkills() {
+            const str = parseInt(document.getElementById('str').value) || 0;
+            const dex = parseInt(document.getElementById('dex').value) || 0;
+            const con = parseInt(document.getElementById('con').value) || 0;
+            const int = parseInt(document.getElementById('int').value) || 0;
+            const wis = parseInt(document.getElementById('wis').value) || 0;
+            const cha = parseInt(document.getElementById('cha').value) || 0;
+
+            document.getElementById('acrobatics').innerText = `${calculateSkill(dex)} Акробатика (Лов)`;
+            document.getElementById('analysis').innerText = `${calculateSkill(int)} Анализ (Инт)`;
+            document.getElementById('athletics').innerText = `${calculateSkill(str)} Атлетика (Сил)`;
+            document.getElementById('perception').innerText = `${calculateSkill(wis)} Восприятие (Муд)`;
+            document.getElementById('survival').innerText = `${calculateSkill(wis)} Выживание (Муд)`;
+            document.getElementById('performance').innerText = `${calculateSkill(cha)} Выступление (Хар)`;
+            document.getElementById('intimidation').innerText = `${calculateSkill(cha)} Запугивание (Хар)`;
+            document.getElementById('history').innerText = `${calculateSkill(int)} История (Инт)`;
+            document.getElementById('sleightOfHand').innerText = `${calculateSkill(dex)} Ловкость рук (Лов)`;
+            document.getElementById('magic').innerText = `${calculateSkill(int)} Магия (Инт)`;
+            document.getElementById('medicine').innerText = `${calculateSkill(wis)} Медицина (Муд)`;
+            document.getElementById('deception').innerText = `${calculateSkill(cha)} Обман (Хар)`;
+            document.getElementById('nature').innerText = `${calculateSkill(int)} Природа (Инт)`;
+            document.getElementById('insight').innerText = `${calculateSkill(wis)} Проницательность (Муд)`;
+            document.getElementById('religion').innerText = `${calculateSkill(int)} Религия (Инт)`;
+            document.getElementById('stealth').innerText = `${calculateSkill(dex)} Скрытность (Лов)`;
+            document.getElementById('persuasion').innerText = `${calculateSkill(cha)} Убеждение (Хар)`;
+            document.getElementById('animalHandling').innerText = `${calculateSkill(wis)} Уход за животными (Муд)`;
+        }
+        function calculateSkill(value) {
+            const result = (value - 10) / 2;
+            return result < 0 ? Math.floor(result) : "+" + Math.floor(result);
+        }
 </script>
 {% endblock content %}
