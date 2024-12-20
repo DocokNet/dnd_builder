@@ -20,3 +20,5 @@ def geardndpage(request):
     return render(request, "dndpage/gear_dnd_page.html", {"gear": gear})
 
 
+def infodndpage(request):
+    return render(request, "dndpage/player_info_dnd_page.html")

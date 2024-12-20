@@ -1,0 +1,116 @@
+{% extends "dndpage\main_dnd_page.html" %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static "css/playerinfodndpage.css" %}" />
+{% endblock head %}
+
+{% block content %}
+<div id="inf">
+    <div id="flexrow">
+        <div id="lvinf">
+            <h3>Уровень</h3>
+            <input value="10" type="number" min="0" max="20"  id="numberInput" pattern="^\d{1,2}$" oninput="this.value = this.value.replace(/[^0-9]/g, '')" />
+        </div>
+        <div class="infbock">
+            <h3>Имя</h3>
+            <input class="inblok" value="Герой" type="text" />
+        </div>
+    </div>
+    <div class="infbock">
+        <h3>Расса</h3>
+        <input class="inblok" value="Человек" type="text" />
+    </div>
+    <div class="infbock">
+        <h3>Класс</h3>
+        <input class="inblok" value="Воин" type="text" />
+    </div>
+    <div class="slider-container">
+        <label for="healthSlider1">Здоровье: <span id="healthValue1">100</span>/100</label>
+        <div class="slider-wrapper">
+            <input type="range" min="0" max="100" value="100" class="sliderhp" id="healthSlider1">
+        </div>
+    </div>
+
+    <div class="slider-container">
+        <label for="experienceSlider1">Опыт: <span id="experienceValue1">100</span>/100</label>
+        <div class="slider-wrapper">
+            <input type="range" min="0" max="100" value="100" class="sliderxp" id="experienceSlider1">
+        </div>
+    </div>
+    <div id="flexrow">
+    <div id="stat">
+        <div>
+            <h3>СИЛ</h3>
+            <input value="10" type="number" min="0" max="20"  id="numberInput" pattern="^\d{1,2}$" oninput="this.value = this.value.replace(/[^0-9]/g, '')" />
+        </div>
+        <div>
+            <h3>ЛОВ</h3>
+            <input value="10" type="number" min="0" max="20"  id="numberInput" pattern="^\d{1,2}$" oninput="this.value = this.value.replace(/[^0-9]/g, '')" />
+        </div>
+        <div>
+            <h3>ТЕЛ</h3>
+            <input value="10" type="number" min="0" max="20"  id="numberInput" pattern="^\d{1,2}$" oninput="this.value = this.value.replace(/[^0-9]/g, '')" />
+        </div>
+        <div>
+            <h3>ИНТ</h3>
+            <input value="10" type="number" min="0" max="20"  id="numberInput" pattern="^\d{1,2}$" oninput="this.value = this.value.replace(/[^0-9]/g, '')" />
+        </div>
+        <div>
+            <h3>МУД</h3>
+            <input value="10" type="number" min="0" max="20"  id="numberInput" pattern="^\d{1,2}$" oninput="this.value = this.value.replace(/[^0-9]/g, '')" />
+        </div>
+        <div>
+            <h3>ХАР</h3>
+            <input value="10" type="number" min="0" max="20"  id="numberInput" pattern="^\d{1,2}$" oninput="this.value = this.value.replace(/[^0-9]/g, '')" />
+        </div>
+    </div >
+    
+    <div class="skills">
+        <h3> Умения </h2>
+        <h2>+0 Акробатика (Лов)</h2>
+        <h2>+0 Анализ (Инт)</h2>
+        <h2>+0 Атлетика (Сил)</h2>
+        <h2>+0 Восприятие (Муд)</h2>
+        <h2>+0 Выживание (Муд)</h2>
+        <h2>+0 Выступление (Хар)</h2>
+        <h2>+0 Запугивание (Хар)</h2>
+        <h2>+0 История (Инт)</h2>
+        <h2>+0 Ловкость рук (Лов)</h2>
+        <h2>+0 Магия (Инт)</h2>
+        <h2>+0 Медицина (Муд)</h2>
+        <h2>+0 Обман (Хар)</h2>
+        <h2>+0 Природа (Инт)</h2>
+        <h2>+0 Проницательность (Муд)</h2>
+        <h2>+0 Религия (Инт)</h2>
+        <h2>+0 Скрытность (Лов)</h2>
+        <h2>+0 Убеждение (Хар)</h2>
+        <h2>+0 Уход за животными (Муд)</h2>
+    </div>
+    </div>
+</div>
+<script>
+        const healthSlider = document.getElementById("healthSlider1");
+        const healthValue = document.getElementById("healthValue1");
+        const experienceSlider = document.getElementById("experienceSlider1");
+        const experienceValue = document.getElementById("experienceValue1");
+
+        healthSlider.oninput = function() {
+            healthValue.innerHTML = this.value;
+            updateSliderBackground(healthSlider);
+        }
+
+        experienceSlider.oninput = function() {
+            experienceValue.innerHTML = this.value;
+            updateSliderBackground(experienceSlider);
+        }
+
+        function updateSliderBackground(slider) {
+            const percentage = (slider.value / 100) * 100;
+            slider.style.background = `linear-gradient(to right, ${slider.id === "healthSlider1" ? '#4CAF50' : '#2196F3'} ${percentage}%, #ddd ${percentage}%)`;
+        }
+
+        // Инициализация фона при загрузке страницы
+        updateSliderBackground(healthSlider);
+        updateSliderBackground(experienceSlider);
+</script>
+{% endblock content %}

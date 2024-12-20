@@ -18,64 +18,71 @@
                 <div id="flexrow">
                     <div id="lvinf">
                         <h3>Уровень</h3>
-                        <h2>10</h3>
+                        <input value="10" type="number" min="0" max="20"  id="numberInput" pattern="^\d{1,2}$" oninput="this.value = this.value.replace(/[^0-9]/g, '')" />
                     </div>
                     <div class="infbock">
                         <h3>Имя</h3>
-                        <h2>Введенное имя</h3>
+                        <input class="inblok" value="Герой" type="text" />
                     </div>
                 </div>
                 <div class="infbock">
                     <h3>Расса</h3>
-                    <h2>Человек</h3>
+                    <input class="inblok" value="Человек" type="text" />
                 </div>
                 <div class="infbock">
                     <h3>Класс</h3>
-                    <h2>Воин</h3>
+                    <input class="inblok" value="Воин" type="text" />
                 </div>
-                <div id="hp">
-                    <h2>Здоровье</h2>
-                    <h2>120/120</h2>
+
+
+                <div class="slider-container">
+                    <label for="healthSlider">Здоровье: <span id="healthValue">100</span>/100</label>
+                    <div class="slider-wrapper">
+                        <input type="range" min="0" max="100" value="100" class="sliderhp" id="healthSlider">
+                    </div>
                 </div>
-                <div id="xp">
-                    <h2>Опыт</h2>
-                    <h2>1200/1200</h2>
+            
+                <div class="slider-container">
+                    <label for="experienceSlider">Опыт: <span id="experienceValue">100</span>/100</label>
+                    <div class="slider-wrapper">
+                        <input type="range" min="0" max="100" value="100" class="sliderxp" id="experienceSlider">
+                    </div>
                 </div>
                 <div id="stat">
                     <div>
                         <h3>СИЛ</h3>
-                        <h3>10</h3>
+                        <input value="10" type="number" min="0" max="20"  id="numberInput" pattern="^\d{1,2}$" oninput="this.value = this.value.replace(/[^0-9]/g, '')" />
                     </div>
                     <div>
                         <h3>ЛОВ</h3>
-                        <h3>10</h3>
+                        <input value="10" type="number" min="0" max="20"  id="numberInput" pattern="^\d{1,2}$" oninput="this.value = this.value.replace(/[^0-9]/g, '')" />
                     </div>
                     <div>
                         <h3>ТЕЛ</h3>
-                        <h3>10</h3>
+                        <input value="10" type="number" min="0" max="20"  id="numberInput" pattern="^\d{1,2}$" oninput="this.value = this.value.replace(/[^0-9]/g, '')" />
                     </div>
                     <div>
                         <h3>ИНТ</h3>
-                        <h3>10</h3>
+                        <input value="10" type="number" min="0" max="20"  id="numberInput" pattern="^\d{1,2}$" oninput="this.value = this.value.replace(/[^0-9]/g, '')" />
                     </div>
                     <div>
                         <h3>МУД</h3>
-                        <h3>10</h3>
+                        <input value="10" type="number" min="0" max="20"  id="numberInput" pattern="^\d{1,2}$" oninput="this.value = this.value.replace(/[^0-9]/g, '')" />
                     </div>
                     <div>
                         <h3>ХАР</h3>
-                        <h3>10</h3>
+                        <input value="10" type="number" min="0" max="20"  id="numberInput" pattern="^\d{1,2}$" oninput="this.value = this.value.replace(/[^0-9]/g, '')" />
                     </div>
                 </div>
             </div>
+            <a href="/dndpage/info/" class="navigate">
+                <h3>Статистика</h3>
+            </a>
             <a href="/dndpage/lv/" class="navigate">
                 <h3>Путь героя</h3>
             </a>
             <a href="/dndpage/lv/" class="navigate">
                 <h3>Навыки</h3>
-            </a>
-            <a href="/dndpage/lv/" class="navigate">
-                <h3>Заклинания</h3>
             </a>
             <a href="/dndpage/gear/" class="navigate">
                 <h3>Инвентарь</h3>
@@ -83,8 +90,34 @@
         </div>
         <div id="content">
             {% block content %}
+    
             {% endblock content %}
         </div>
     </main>
+    <script>
+        const healthSlider = document.getElementById("healthSlider");
+        const healthValue = document.getElementById("healthValue");
+        const experienceSlider = document.getElementById("experienceSlider");
+        const experienceValue = document.getElementById("experienceValue");
+
+        healthSlider.oninput = function() {
+            healthValue.innerHTML = this.value;
+            updateSliderBackground(healthSlider);
+        }
+
+        experienceSlider.oninput = function() {
+            experienceValue.innerHTML = this.value;
+            updateSliderBackground(experienceSlider);
+        }
+
+        function updateSliderBackground(slider) {
+            const percentage = (slider.value / 100) * 100;
+            slider.style.background = `linear-gradient(to right, ${slider.id === "healthSlider" ? '#4CAF50' : '#2196F3'} ${percentage}%, #ddd ${percentage}%)`;
+        }
+
+        // Инициализация фона при загрузке страницы
+        updateSliderBackground(healthSlider);
+        updateSliderBackground(experienceSlider);
+    </script>
 </body>
 </html>
