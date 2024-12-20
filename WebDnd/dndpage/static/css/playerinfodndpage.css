@@ -50,7 +50,6 @@
 }
 
 .sliderhp {
-    -webkit-appearance: none; /* Убираем стандартный стиль для WebKit */
     width: 100%; /* Ширина ползунка */
     height: 15px; /* Высота ползунка */
     background: #ddd; /* Цвет фона по умолчанию */
@@ -76,7 +75,6 @@
     cursor: pointer; /* Курсор при наведении */
 }
 .sliderxp {
-    -webkit-appearance: none; /* Убираем стандартный стиль для WebKit */
     width: 100%; /* Ширина ползунка */
     height: 15px; /* Высота ползунка */
     background: #ddd; /* Цвет фона по умолчанию */
@@ -131,4 +129,37 @@
 .custom-number-input::-webkit-outer-spin-button {
     -webkit-appearance: none; /* Для Chrome, Safari и Opera */
     margin: 0;
+}
+.selectbock {
+    border: 2px solid white;
+    border-radius: 10px;
+    width: 95%;
+    padding: 5px;
+    margin: 2px;
+    display: grid;
+    position: relative;
+}
+
+select {
+    background-color: transparent; /* Прозрачный фон */
+    border: 2px solid white; /* Белая обводка */
+    color: rgb(255, 255, 255); /* Цвет текста */
+    padding: 10px; /* Отступы внутри селекта */
+    border-radius: 5px; /* Закругленные углы */
+    appearance: none; /* Убираем стандартный стиль браузера */
+    cursor: pointer; /* Курсор при наведении */
+}
+
+/* Стили для псевдоэлемента, чтобы создать стрелку */
+.selectbock {
+    position: relative;
+}
+
+.selectbock::after {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: white; /* Цвет стрелки */
+    pointer-events: none; /* Игнорируем события мыши */
 }
