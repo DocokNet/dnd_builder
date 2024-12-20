@@ -24,7 +24,7 @@ class ClassesSerializer(serializers.ModelSerializer):
 class ClassSkillsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Class_skills
-        fields = ['id', 'name', 'class_id']
+        fields = ['id', 'name', 'class_id', 'description']
 
 #class ArchetypeSkillsSerializer(serializers.ModelSerializer):
 #    class Meta:
@@ -34,9 +34,9 @@ class ClassSkillsSerializer(serializers.ModelSerializer):
 class CurrentClassInfoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Current_class_info
-        fields = ['id', 'class_id', 'archetype_id']
+        fields = ['id', 'class_id']
 
 class PlayerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Player
-        fields = ['list_id', 'character_name', 'level', 'class_table', 'race_id', 'background_id', 'alignment', 'experience', 'stats', 'skills', 'gear']
+        fields = ['list_id', 'character_name', 'level', 'class_table', 'race_id', 'background_id', 'alignment', 'hit_points', 'experience', 'stats', 'skills', 'gear']

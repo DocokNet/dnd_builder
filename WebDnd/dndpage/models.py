@@ -85,6 +85,7 @@ class Class_skills(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100)
     class_id = models.ForeignKey(Classes, on_delete=models.CASCADE)
+    description = models.CharField(max_length=1000)
 
     @classmethod
     def parseClass_skills(self):
@@ -95,6 +96,7 @@ class Class_skills(models.Model):
             dicti["id"] = i.id
             dicti["name"] = i.name
             dicti["class_id"] = i.class_id
+            dicti["description"] = i.description
             prepared_data.append(dicti)
             dicti = dict()            
         return prepared_data
@@ -135,6 +137,7 @@ class Player(models.Model):
     race_id = models.ForeignKey(Races, on_delete=models.CASCADE)
     background_id = models.ForeignKey(Background, on_delete=models.CASCADE)
     alignment = models.CharField(max_length=2)
+    hit_points = models.JSONField(default=list())
     experience = models.JSONField(default=list())
     stats = models.JSONField(default=dict())
     skills = models.JSONField(default=dict())
@@ -153,6 +156,7 @@ class Player(models.Model):
             dicti["race_id"] = i.race_id
             dicti["background_id"] = i.background_id
             dicti["alignment"] = i.alignment
+            dicti["hit_points"] = i.hit_points
             dicti["experience"] = i.experience
             dicti["stats"] = i.stats
             dicti["skills"] = i.skills
