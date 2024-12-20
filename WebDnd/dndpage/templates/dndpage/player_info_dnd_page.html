@@ -16,13 +16,17 @@
             <input class="inblok" value="Герой" type="text" />
         </div>
     </div>
-    <div class="infbock">
-        <h3>Раса</h3>
-        <input class="inblok" value="Человек" type="text" />
+    <div class="selectbock">
+        <label for="raceSelect">Расса</label>
+        <select id="raceSelect" onchange="populateRaceSelect()">
+        <option value="">Выбор рассы</option>
+        </select>
     </div>
-    <div class="infbock">
-        <h3>Класс</h3>
-        <input class="inblok" value="Воин" type="text" />
+    <div class="selectbock">
+        <label for="classSelect">Класс</label>
+        <select id="classSelect" onchange="displayClassDetails()">
+        <option value="">Выбор класса</option>
+        </select>
     </div>
     <div class="slider-container">
         <label for="healthSlider1">Здоровье: <span id="healthValue1">100</span>/100</label>
@@ -109,6 +113,7 @@
         <h2 id="persuasion">+0 Убеждение (Хар)</h2>
         <h2 id="animalHandling">+0 Уход за животными (Муд)</h2>
     </div>
+    <div id="classDetails" style="margin-top: 20px;"></div>
     </div>
 </div>
 <script>
@@ -183,5 +188,83 @@
             const result = (value - 10) / 2;
             return result < 0 ? Math.floor(result) : "+" + Math.floor(result);
         }
-</script>
+        // Функция для получения данных по классам
+        function fetchClasses() {
+            fetch('http://127.0.0.1:8000/api/classes/')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Ошибка сети');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    populateClassSelect(data);
+                })
+                .catch(error => {
+                    console.error('Ошибка:', error);
+                });
+        }
+
+        // Функция для заполнения выпадающего списка классами
+        function populateClassSelect(classes) {
+            const select = document.getElementById('classSelect');
+            classes.forEach(cls => {
+                const option = document.createElement('option');
+                option.value = cls.id;
+                option.textContent = cls.class_name;
+                option.setAttribute("data-hp-dice", cls.hp_dice);
+                select.appendChild(option);
+            });
+        }
+
+        // Функция для отображения деталей выбранного класса
+        function displayClassDetails() {
+            const select = document.getElementById('classSelect');
+            const selectedId = select.value;
+            const detailsDiv = document.getElementById('classDetails');
+
+            if (selectedId) {
+                const selectedOption = select.options[select.selectedIndex];
+                const hpDice = selectedOption.getAttribute('data-hp-dice');
+                detailsDiv.innerHTML = `
+                    <h3>Детали класса:</h3>
+                    <p><strong>Id:</strong> ${selectedId}</p>
+                    <p><strong>Имя класса:</strong> ${selectedOption.textContent}</p>
+                    <p><strong>Hp dice:</strong> ${hpDice || 'Не указано'}</p>
+                `;
+            } else {
+                detailsDiv.innerHTML = ''; 
+            }
+        }
+
+        function fetchRaces() {
+            fetch('http://127.0.0.1:8000/api/races/')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Ошибка сети');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    populateRaceSelect(data);
+                })
+                .catch(error => {
+                    console.error('Ошибка:', error);
+                });
+        }
+
+        function populateRaceSelect(races) {
+            const select = document.getElementById('raceSelect');
+            races.forEach(race => {
+                const option = document.createElement('option');
+                option.value = race.id;
+                option.textContent = race.name;
+                select.appendChild(option); 
+            });
+        }
+        window.onload = function() {
+            fetchClasses();
+            fetchRaces();
+        };
+    </script>
 {% endblock content %}

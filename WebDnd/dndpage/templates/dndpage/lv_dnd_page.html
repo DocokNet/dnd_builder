@@ -21,16 +21,47 @@
 </div> -->
 
 
-<div id="lvpage">
-    {% for race in races %}
-    <div class="lv">
-        <h2>{{race.name}}</h2>
-        <div>
-            <h3>{{race.description}}</h3>
-        </div>
-    </div>
-    {% endfor %}
+<div class="skills" id="skillsContainer">
+    <h3>Навыки:</h3>
+    <div id="skillsList"></div>
 </div>
+<script>
+    function fetchSkills() {
+        const classId = document.getElementById('classSelect1').value;
+        const skillsContainer = document.getElementById('skillsList');
+        skillsContainer.innerHTML = ''; // Очистка списка навыков
 
+        if (classId) {
+            fetch(`http://127.0.0.1:8000/api/class-skills/?class_id=${classId}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Ошибка сети');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    data.forEach(skill => {
+                        if (skill.class_id == classId) {
+                            const skillDiv = document.createElement('div');
+                            skillDiv.classList.add('skill');
 
+                            const skillName = document.createElement('h2');
+                            skillName.textContent = skill.name;
+
+                            const skillDescription = document.createElement('p');
+                            skillDescription.textContent = skill.description;
+
+                            skillDiv.appendChild(skillName);
+                            skillDiv.appendChild(skillDescription);
+                            skillsContainer.appendChild(skillDiv);
+                        }
+                        
+                    });
+                })
+                .catch(error => {
+                    console.error('Ошибка:', error);
+                });
+        }
+    }
+</script>
 {% endblock content %}

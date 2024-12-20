@@ -26,12 +26,16 @@
                     </div>
                 </div>
                 <div class="infbock">
-                    <h3>Раса</h3>
-                    <input class="inblok" value="Человек" type="text" />
+                    <label for="raceSelect1">Расса</label>
+                    <select id="raceSelect1" onchange="RaceSelect()">
+                    <option value="">Выбор рассы</option>
+                    </select>
                 </div>
                 <div class="infbock">
-                    <h3>Класс</h3>
-                    <input class="inblok" value="Воин" type="text" />
+                    <label for="classSelect1">Класс</label>
+                    <select id="classSelect1" onchange="fetchSkills()">
+                        <option value="">Выбор класса</option>
+                    </select>
                 </div>
 
 
@@ -95,6 +99,28 @@
         </div>
     </main>
     <script>
+        function loadClasses() {
+        fetch('http://127.0.0.1:8000/api/classes/')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Ошибка сети');
+                }
+                return response.json();
+            })
+            .then(data => {
+                const classSelect = document.getElementById('classSelect1');
+                data.forEach(classItem => {
+                    const option = document.createElement('option');
+                    option.value = classItem.id;
+                    option.textContent = classItem.class_name;
+                    classSelect.appendChild(option);
+                });
+            })
+            .catch(error => {
+                console.error('Ошибка:', error);
+            });
+    }
+
         const healthSlider = document.getElementById("healthSlider");
         const healthValue = document.getElementById("healthValue");
         const experienceSlider = document.getElementById("experienceSlider");
@@ -115,9 +141,39 @@
             slider.style.background = `linear-gradient(to right, ${slider.id === "healthSlider" ? '#4CAF50' : '#2196F3'} ${percentage}%, #ddd ${percentage}%)`;
         }
 
+        function loadRaces() {
+            fetch('http://127.0.0.1:8000/api/races/')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Ошибка сети');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    RaceSelect(data);
+                })
+                .catch(error => {
+                    console.error('Ошибка:', error);
+                });
+        }
+
+        function RaceSelect(races) {
+            const select = document.getElementById('raceSelect1');
+            races.forEach(race => {
+                const option = document.createElement('option');
+                option.value = race.id;
+                option.textContent = race.name;
+                select.appendChild(option); 
+            });
+        }
+
         // Инициализация фона при загрузке страницы
         updateSliderBackground(healthSlider);
         updateSliderBackground(experienceSlider);
+        window.onload = function() {
+            loadClasses();
+            loadRaces();
+        };
     </script>
 </body>
 </html>
