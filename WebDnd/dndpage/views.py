@@ -56,8 +56,9 @@ def maindndpage(request):
 
 
 def lvdndpage(request):
-    lv = [i + 1 for i in range(20)]
-    return render(request, "dndpage/lv_dnd_page.html", {"lv": lv})
+    # lv = [i + 1 for i in range(20)]
+    races = Races.objects.all()
+    return render(request, "dndpage/lv_dnd_page.html", {"races": races})
 
 def geardndpage(request):
     gear = [

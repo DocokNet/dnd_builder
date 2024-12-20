@@ -6,7 +6,7 @@
 
 {% block content %}
 
-<div id="lvpage">
+<!-- <div id="lvpage">
     {% for i in lv %}
     <div class="lv">
         <h2>Lv {{i}}</h2>
@@ -18,5 +18,19 @@
         </div>
     </div>
     {% endfor %}
+</div> -->
+
+
+<div id="lvpage">
+    {% for race in races %}
+    <div class="lv">
+        <h2>{{race.name}}</h2>
+        <div>
+            <h3>{{race.description}}</h3>
+        </div>
+    </div>
+    {% endfor %}
 </div>
+
+
 {% endblock content %}
